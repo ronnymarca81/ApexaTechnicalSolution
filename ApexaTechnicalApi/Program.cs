@@ -1,5 +1,6 @@
 using ApexaTechnicalApi.Data;
 using ApexaTechnicalApi.MappingProfiles;
+using ApexaTechnicalApi.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -21,6 +22,9 @@ builder.Services.AddSwaggerGen();
 // Registering custom services
 builder.Services.AddScoped<ApexaTechnicalApi.Services.AdvisorService>();
 
+// Registering of AuthService
+builder.Services.AddScoped<IAuthService, AuthService>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -29,6 +33,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.MapControllers();
 
