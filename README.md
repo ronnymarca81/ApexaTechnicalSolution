@@ -7,7 +7,7 @@ This project involves developing a REST API for advisor management, where users 
 
 ## Requirements
 
-1. **AApexa Technical Assesment API:**  
+1. **Apexa Technical Assesment API:**  
    - Create an advisor with the following fields:
       - Name (Length: Max 255 | Required)
       - SIN (Length: Exactly 9 | Required | Masked | Unique)
@@ -33,7 +33,6 @@ This project involves developing a REST API for advisor management, where users 
 The API will follow a Clean Architecture pattern that separates concerns into layers, promoting modular and maintainable code.
 
 ----
-@startuml
     package "API" {
         component "Controllers" {
         }
@@ -47,24 +46,22 @@ The API will follow a Clean Architecture pattern that separates concerns into la
     Controllers -[hidden]-> Application : Uses
     Application --> Domain : Business Logic
     Infrastructure --> Domain : Data Access
-@enduml
 ----
 
-**Capa de Presentación (Controllers):** Contendrá los controladores ASP.NET Core que manejarán las solicitudes HTTP.
+**Presentation Layer (Controllers):** Will contain the ASP.NET Core controllers that will handle HTTP requests.
 
-**Capa de Aplicación (Application):** Implementará la lógica de negocio, incluyendo servicios y casos de uso.
+**Application Layer:** Will implement the business logic, including services and use cases.
 
-**Capa de Dominio (Domain):** Incluirá las entidades y reglas de negocio. Aquí se definirá la entidad `Advisor` con sus propiedades y validaciones.
+**Domain Layer:** Will include the entities and business rules. The `Advisor` entity will be defined here with its properties and validations.
 
-**Capa de Infraestructura (Infrastructure):** Contendrá la implementación de EF Core para el acceso a la base de datos en memoria.
+**Infrastructure Layer:** Will contain the EF Core implementation for accessing the in-memory database.
 
-=== Esquema de Base de Datos
+### Database Schema 
 
-Aunque utilizaremos una base de datos en memoria, definiremos el esquema para la persistencia de datos de los asesores.
+Although in-memory database will be used, the schema for the persistence of advisor data will defined.
 
-[plantuml, database, png]
 ----
-@startuml
+
 entity Advisor {
     int Id
     string Name
@@ -73,102 +70,101 @@ entity Advisor {
     string Phone
     string HealthStatus
 }
-@enduml
+
 ----
 
-=== Generación del Estado de Salud
+### Health State Generation
 
-El estado de salud se generará aleatoriamente al crear un asesor utilizando las siguientes probabilidades:
+The health state will be generated randomly when creating an advisor using the following probabilities:
 
-- Verde: 60%
-- Amarillo: 20%
-- Rojo: 20%
+- Green: 60%
+- Yellow: 20%
+- Red: 20%
 
-Este proceso se implementará en la capa de Aplicación durante la creación del asesor.
+This process will be implemented in the Application layer during the creation of the advisor.
 
-=== Pruebas Unitarias
+### Unit Testing
 
-Las pruebas se desarrollarán utilizando xUnit, cubriendo los siguientes aspectos:
+The tests will be developed using xUnit, covering the following aspects:
 
-- Creación de un asesor con datos válidos e inválidos.
-- Actualización de un asesor existente.
-- Eliminación de un asesor.
-- Obtención y listado de asesores.
+- Creating an advisor with valid and invalid data.
+- Updating an existing advisor.
+- Deleting an advisor.
+- Obtaining and listing advisors.
 
-== Implementation
+## Implementation
 
-=== Backend
+1. Setting up the .NET project with ASP.NET Core and EF Core.
+2. Implementing the controllers and services.
+3. Setting up the in-memory database.
+4. Implementing unit tests with xUnit.
+5. Documenting the API with Swagger.
+6. Preparing the script for project execution.
+   
+## API and Test Execution Instructions
 
-1. Configuración del proyecto .NET con ASP.NET Core y EF Core.
-2. Implementación de los controladores y servicios.
-3. Configuración de la base de datos en memoria.
-4. Implementación de las pruebas unitarias con xUnit.
-5. Documentación de la API con Swagger.
-6. Preparación del script para la ejecución del proyecto.
+### 1. Clone the respository
 
-## Instrucciones de Ejecución de la API y el Test
-
-### 1. Clonar el Repositorio
-
-bash
+```bash
 git clone https://github.com/ronnymarca81/ApexaTechnicalSolution.git
 cd ApexaTechnicalSolution
+```
 
-### 2. Restaurar Paquetes NuGet
-bash
+### 2. Restore NuGet Packages
+```bash
 dotnet restore
+```
+### 3. Execute the API
 
-### 3. Ejecutar API
-bash
-3.1. Regresar a la carpeta ApexaTechnicalSolution con cd..
+3.1. Return to the ApexaTechnicalSolution folder with cd..
 
 3.2 dotnet run --project ApexaTechnicalApi/ApexaTechnicalApi.csproj
-El proyecto del API y las pruebas comparten la solucion por tal razon debe indicar el proyecto a ejecutar.
+The API project and the tests share the solution, so you must indicate the project to run.
 
-3.3. La API estará disponible en https://localhost:5225 y la documentación de Swagger en https://localhost:5225/swagger.
+3.3. The API will be available at https://localhost:5225 and the Swagger documentation at https://localhost:5225/swagger.
 ![Swagger dashboard](https://github.com/user-attachments/assets/8b6e3d7e-4f02-4ca0-b123-6c1b899fae14)
 
-3.4. Crear un usuario para poder generar autenticacion con JWT como resultdo generara un token.
+3.4. Create a user to be able to generate authentication with JWT, as a result a token will be generated.
 ![Create user](https://github.com/user-attachments/assets/805d67da-913f-45a7-b51c-26cfceb16327)
 
-3.5. Copiar el token con Auth
+3.5. Copy the token with Auth
 ![Token](https://github.com/user-attachments/assets/d38fab9b-521b-44c1-a88b-fc87ec365b70)
 
-3.6. Dar clic en el boton Authorize situado en la parte superior derecha del dashboard (Image on 3.3).
+3.6. Click on the Authorize button located on the top right of the dashboard (Image on 3.3).
 
-3.7. En el cuadro de texto digitar la palabra bearer espacio pegar el token y clic en el boton Authorize.
+3.7. In the text box type the word bearer space paste the token and click on the Authorize button.
 ![Authorize](https://github.com/user-attachments/assets/c069cc9a-cf15-48a0-962d-5505f865e89c)
 
-3.8. Clic en la accion a realizar. 
-Ejemplo: 
-Clic en Post, luego Try it out, agregar los parametros y clic en el boton Execute.
+3.8. Click on the action to be performed.
+Example:
+Click on Post, then Try it out, add the parameters and click on the Execute button.
 ![Post](https://github.com/user-attachments/assets/10851a96-3ec0-440b-9239-e531e6a6d87b)
 
-La respuesta se visualizara de la siguiente manera
+The response will be displayed as follows
 ![Responses](https://github.com/user-attachments/assets/4c66e32a-7b14-41aa-89ae-091f8c307a1f)
 
-### 4. Ejecutar Test
+### 4. Execute the Test
 
-4.1. Restaurar Paquetes NuGet.
-bash
+4.1. Restore NuGet Packages.
+```bash
 dotnet restore ApexaTechnicalApi.Tests/ApexaTechnicalApi.Tests.csproj
-
-4.2. Regresar a la carpeta ApexaTechnicalSolution con cd..
+```
+4.2. Return to the ApexaTechnicalSolution folder with cd..
 
 4.3. dotnet test
 ![Test](https://github.com/user-attachments/assets/c5d9870c-7241-4329-ac39-c11f88a58486)
 
-== Milestones
+## Milestones
 
-1. Configuración inicial y estructura del proyecto.
-2. Implementación de la API con todas las operaciones CRUD.
-3. Desarrollo de las pruebas unitarias.
-4. Documentación y preparación del script de ejecución.
-5. Revisión final y despliegue en el repositorio.
+1. Initial setup and project structure.
+2. Implementation of the API with all CRUD operations for advisors and users.
+3. Development of unit tests.
+4. Documentation and preparation of the execution script.
+5. Final review and deployment in the repository.
 
-== Gathering Results
+## Gathering Results
 
-- Evaluación del cumplimiento de los requisitos funcionales y no funcionales.
-- Verificación del correcto funcionamiento de la API a través de Swagger.
-- Ejecución de pruebas unitarias y revisión de la cobertura.
+- Evaluation of compliance with functional and non-functional requirements.
+- Verification of the correct operation of the API through Swagger.
+- Execution of unit tests and review of coverage.
 
