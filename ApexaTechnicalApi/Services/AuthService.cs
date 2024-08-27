@@ -21,10 +21,10 @@ namespace ApexaTechnicalApi.Services
     }
     public class AuthService : IAuthService
     {
-        private readonly ApplicationDbContext? _context;
+        private readonly IApplicationDbContext? _context;
         private readonly IConfiguration? _configuration;
 
-        public AuthService(ApplicationDbContext context, IConfiguration configuration)
+        public AuthService(IApplicationDbContext context, IConfiguration configuration)
         {
             _context = context;
             _configuration = configuration;
