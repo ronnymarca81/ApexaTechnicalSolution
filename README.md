@@ -111,6 +111,13 @@ Las pruebas se desarrollarán utilizando xUnit, cubriendo los siguientes aspecto
 5. Documentación de la API con Swagger.
 6. Preparación del script para la ejecución del proyecto.
 
+## Instrucciones de Ejecución
+
+### 1. Clonar el Repositorio
+
+```bash
+git clone https://github.com/usuario/advisor-management-api.git
+cd advisor-management-api
 == Milestones
 
 1. Configuración inicial y estructura del proyecto.
