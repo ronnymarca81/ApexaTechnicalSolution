@@ -127,6 +127,7 @@ dotnet restore
 ### 3. Ejecutar API
 bash
 3.1. Regresar a la carpeta ApexaTechnicalSolution con cd..
+
 3.2 dotnet run --project ApexaTechnicalApi/ApexaTechnicalApi.csproj
 El proyecto del API y las pruebas comparten la solucion por tal razon debe indicar el proyecto a ejecutar.
 
@@ -140,6 +141,7 @@ El proyecto del API y las pruebas comparten la solucion por tal razon debe indic
 ![Token](https://github.com/user-attachments/assets/d38fab9b-521b-44c1-a88b-fc87ec365b70)
 
 3.6. Dar clic en el boton Authorize situado en la parte superior derecha del dashboard (Image on 3.3).
+
 3.7. En el cuadro de texto digitar la palabra bearer espacio pegar el token y clic en el boton Authorize.
 ![Authorize](https://github.com/user-attachments/assets/c069cc9a-cf15-48a0-962d-5505f865e89c)
 
