@@ -139,7 +139,7 @@ El proyecto del API y las pruebas comparten la solucion por tal razon debe indic
 3.5. Copiar el token con Auth
 ![Token](https://github.com/user-attachments/assets/d38fab9b-521b-44c1-a88b-fc87ec365b70)
 
-3.6. Dar clic en el boton Authorize situado en la parte superior derecha del dashboard (Image on 3.3)
+3.6. Dar clic en el boton Authorize situado en la parte superior derecha del dashboard (Image on 3.3).
 3.7. En el cuadro de texto digitar la palabra bearer espacio pegar el token y clic en el boton Authorize.
 ![Authorize](https://github.com/user-attachments/assets/c069cc9a-cf15-48a0-962d-5505f865e89c)
 
@@ -153,10 +153,12 @@ La respuesta se visualizara de la siguiente manera
 
 ### 4. Ejecutar Test
 
-4.1. Restaurar Paquetes NuGet
+4.1. Restaurar Paquetes NuGet.
 bash
 dotnet restore ApexaTechnicalApi.Tests/ApexaTechnicalApi.Tests.csproj
+
 4.2. Regresar a la carpeta ApexaTechnicalSolution con cd..
+
 4.3. dotnet test
 ![Test](https://github.com/user-attachments/assets/c5d9870c-7241-4329-ac39-c11f88a58486)
 
