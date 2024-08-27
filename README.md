@@ -1,43 +1,37 @@
-<h1 align="center">Welcome to My-Planner 👋</h1>
-= SPEC-1: API de Gestión de Asesores 
-:sectnums:
-:toc:
+<h1 align="center">Welcome to Apexa Technical Assesment API 👋</h1>
+
+## Background
 
 
-== Background
+This project involves developing a REST API for advisor management, where users can create, get, update, delete, and list advisors. The API will be built using .NET 8, ASP.NET Core, and C# 12, with in-memory persistence using EF Core 8, and unit testing using xUnit. API documentation will be managed using Swagger, and a script or command will be provided to run the application with a single click.
 
-Este proyecto consiste en el desarrollo de una API REST para la gestión de asesores, donde los usuarios pueden crear, obtener, actualizar, eliminar y listar asesores. La API se construirá utilizando .NET 8, ASP.NET Core, y C# 12, con persistencia en memoria utilizando EF Core 8, y pruebas unitarias con xUnit. La documentación de la API se gestionará mediante Swagger, y se proporcionará un script o comando para ejecutar la aplicación con un solo clic.
+## Requirements
 
-== Requirements
-
-*Must-Have:*
-
-1. **API de Gestión de Asesores:**
-   - Crear un asesor con los siguientes campos:
-     - Nombre (Longitud: Máx 255 | Requerido)
-     - SIN (Longitud: Exactamente 9 | Requerido | Enmascarado | Único)
-     - Dirección (Longitud: Máx 255 | Opcional)
-     - Teléfono (Longitud: Exactamente 8 | Opcional | Enmascarado)
-     - Estado de Salud (Verde/Amarillo/Rojo) - Generado aleatoriamente en el backend con las siguientes probabilidades: Verde=60%, Amarillo=20%, Rojo=20%
-   - Obtener un asesor por su identificador único.
-   - Actualizar la información de un asesor.
-   - Eliminar un asesor de la base de datos.
-   - Listar todos los asesores disponibles en el sistema.
+1. **AApexa Technical Assesment API:**  
+   - Create an advisor with the following fields:
+      - Name (Length: Max 255 | Required)
+      - SIN (Length: Exactly 9 | Required | Masked | Unique)
+      - Address (Length: Max 255 | Optional)
+      - Phone (Length: Exactly 8 | Optional | Masked)
+      - Health Status (Green/Yellow/Red) - Randomly generated in the backend with the following probabilities: Green=60%, Yellow=20%, Red=20%
+   - Get an advisor by its unique identifier.
+   - Update an advisor's information.
+   - Delete an advisor from the database.
+   - List all advisors available in the system.
 
 2. **Backend:**
-   - Plataforma: .NET 8, ASP.NET Core, C# 12.
-   - Acceso a datos utilizando EF Core 8 con persistencia en memoria.
-   - Pruebas unitarias con xUnit.
-   - Documentación de la API con Swagger.
-   - Incluir un archivo README y un script para ejecutar la aplicación con un solo comando.
+   - Platform: .NET 8, ASP.NET Core, C# 12.
+   - Data access using EF Core 8 with in-memory persistence.
+   - Unit testing with xUnit.
+   - API documentation with Swagger.
+   - Include a README file and a script to run the application with a single command.
 
-== Method
+## Method
 
-=== Arquitectura de la API
+### API Architecture
 
-La API seguirá un patrón de arquitectura limpia (Clean Architecture) que separa las preocupaciones en capas, promoviendo un código modular y fácil de mantener.
+The API will follow a Clean Architecture pattern that separates concerns into layers, promoting modular and maintainable code.
 
-[plantuml, architecture, png]
 ----
 @startuml
     package "API" {
