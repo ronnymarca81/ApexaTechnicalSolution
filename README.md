@@ -131,7 +131,8 @@ El proyecto del API y las pruebas comparten la solucion por tal razon debe indic
 
 La API estará disponible en https://localhost:5225 y la documentación de Swagger en https://localhost:5225/swagger.
 
-![image](https://github.com/user-attachments/assets/a1b723f6-2e47-456a-be7c-19f43e054192)
+![Swagger dashboard](https://github.com/user-attachments/assets/8b6e3d7e-4f02-4ca0-b123-6c1b899fae14)
+
 
 
 == Milestones
