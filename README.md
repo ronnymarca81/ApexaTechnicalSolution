@@ -125,15 +125,30 @@ dotnet restore
 
 ### 3. Ejecutar la Aplicación
 bash
-Regresar a la carpeta ApexaTechnicalSolution con cd..
-dotnet run --project ApexaTechnicalApi/ApexaTechnicalApi.csproj
+3.1. Regresar a la carpeta ApexaTechnicalSolution con cd..
+3.2 dotnet run --project ApexaTechnicalApi/ApexaTechnicalApi.csproj
 El proyecto del API y las pruebas comparten la solucion por tal razon debe indicar el proyecto a ejecutar.
 
-La API estará disponible en https://localhost:5225 y la documentación de Swagger en https://localhost:5225/swagger.
-
+3.3. La API estará disponible en https://localhost:5225 y la documentación de Swagger en https://localhost:5225/swagger.
 ![Swagger dashboard](https://github.com/user-attachments/assets/8b6e3d7e-4f02-4ca0-b123-6c1b899fae14)
 
+3.4. Crear un usuario para poder generar autenticacion con JWT como resultdo generara un token.
+![Create user](https://github.com/user-attachments/assets/805d67da-913f-45a7-b51c-26cfceb16327)
 
+3.5. Copiar el token con Auth
+![Token](https://github.com/user-attachments/assets/d38fab9b-521b-44c1-a88b-fc87ec365b70)
+
+3.6. Dar clic en el boton Authorize situado en la parte superior derecha del dashboard (Image on 3.3).
+3.7. En el cuadro de texto digitar la palabra bearer espacio pegar el token y clic en el boton Authorize.
+![Authorize](https://github.com/user-attachments/assets/c069cc9a-cf15-48a0-962d-5505f865e89c)
+
+3.8. Clic en la accion a realizar. 
+Ejemplo: 
+Clic en Post, luego Try it out, agregar los parametros y clic en el boton Execute.
+![Post](https://github.com/user-attachments/assets/10851a96-3ec0-440b-9239-e531e6a6d87b)
+
+La respuesta se visualizara de la siguiente manera
+![Responses](https://github.com/user-attachments/assets/4c66e32a-7b14-41aa-89ae-091f8c307a1f)
 
 == Milestones
 
