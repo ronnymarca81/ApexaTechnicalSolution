@@ -1,3 +1,4 @@
+<h1 align="center">Welcome to My-Planner 👋</h1>
 = SPEC-1: API de Gestión de Asesores 
 :sectnums:
 :toc:
