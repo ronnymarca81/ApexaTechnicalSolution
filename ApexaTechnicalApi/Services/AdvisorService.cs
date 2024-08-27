@@ -1,16 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using ApexaTechnicalApi.Data;
 using ApexaTechnicalApi.DTOs;
 using ApexaTechnicalApi.Models;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace ApexaTechnicalApi.Services
 {
-    public class AdvisorService
+    public class AdvisorService : IAdvisorService
     {
         private readonly ApplicationDbContext _context;
         private readonly IMapper _mapper;
@@ -21,21 +19,21 @@ namespace ApexaTechnicalApi.Services
             _mapper = mapper;
         }
 
-        public async Task<AdvisorDto> CreateAdvisorAsync(CreateAdvisorDto dto)
+        public async Task<AdvisorDto?> GetAdvisorByIdAsync(int id)
         {
-            var advisor = _mapper.Map<Advisor>(dto);
-            advisor.HealthStatus = GenerateHealthStatus();
+            var advisor = await _context.Advisors.FindAsync(id);
+            return advisor == null ? null : _mapper.Map<AdvisorDto>(advisor);
+        }
+
+        public async Task<AdvisorDto> CreateAdvisorAsync(CreateAdvisorDto advisorDto)
+        {
+            var advisor = _mapper.Map<Advisor>(advisorDto);
+            advisor.HealthStatus = GenerateRandomHealthStatus();
 
             _context.Advisors.Add(advisor);
             await _context.SaveChangesAsync();
 
             return _mapper.Map<AdvisorDto>(advisor);
-        }
-
-        public async Task<AdvisorDto?> GetAdvisorByIdAsync(int id)
-        {
-            var advisor = await _context.Advisors.FindAsync(id);
-            return advisor == null ? null : _mapper.Map<AdvisorDto>(advisor);
         }
 
         public async Task<List<AdvisorDto>> GetAdvisorsAsync()
@@ -44,34 +42,37 @@ namespace ApexaTechnicalApi.Services
             return _mapper.Map<List<AdvisorDto>>(advisors);
         }
 
-        public async Task UpdateAdvisorAsync(int id, CreateAdvisorDto dto)
+        public async Task UpdateAdvisorAsync(int id, CreateAdvisorDto advisorDto)
         {
             var advisor = await _context.Advisors.FindAsync(id);
-            if (advisor != null)
+            if (advisor == null)
             {
-                _mapper.Map(dto, advisor);
-                await _context.SaveChangesAsync();
+                throw new KeyNotFoundException("Advisor not found.");
             }
+
+            _mapper.Map(advisorDto, advisor);
+            advisor.HealthStatus = GenerateRandomHealthStatus();
+
+            await _context.SaveChangesAsync();
         }
 
         public async Task DeleteAdvisorAsync(int id)
         {
             var advisor = await _context.Advisors.FindAsync(id);
-            if (advisor != null)
+            if (advisor == null)
             {
-                _context.Advisors.Remove(advisor);
-                await _context.SaveChangesAsync();
+                throw new KeyNotFoundException("Advisor not found.");
             }
+
+            _context.Advisors.Remove(advisor);
+            await _context.SaveChangesAsync();
         }
 
-        private string GenerateHealthStatus()
+        private string GenerateRandomHealthStatus()
         {
-            var rand = new Random();
-            int value = rand.Next(100);
-            if (value < 60) return "Green";
-            if (value < 80) return "Yellow";
-            return "Red";
+            var random = new Random();
+            var statuses = new[] { "Green", "Yellow", "Red" };
+            return statuses[random.Next(statuses.Length)];
         }
-
     }
 }

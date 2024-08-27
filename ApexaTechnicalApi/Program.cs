@@ -22,6 +22,9 @@ builder.Services.AddControllers();
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseInMemoryDatabase("AdvisorManagementDb"));
 
+// Register IApplicationDbContext for dependency injection
+builder.Services.AddScoped<IApplicationDbContext>(provider => provider.GetRequiredService<ApplicationDbContext>());
+
 // Configuring AutoMapper with multiples profiles
 builder.Services.AddAutoMapper(typeof(AdvisorMappingProfile), typeof(UserMappingProfile));
 
@@ -56,10 +59,11 @@ builder.Services.AddSwaggerGen(options =>
 });
 
 // Registering custom services
-builder.Services.AddScoped<ApexaTechnicalApi.Services.AdvisorService>();
+//builder.Services.AddScoped<ApexaTechnicalApi.Services.AdvisorService>();
 
-// Registering of AuthService
+// Registering of AuthService and IAdvisorService
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IAdvisorService, AdvisorService>();
 
 var app = builder.Build();
 

@@ -14,8 +14,8 @@ namespace ApexaTechnicalApi.Controllers
     [Route("api/[controller]")]
     public class AdvisorsController : ControllerBase
     {
-        private readonly AdvisorService _advisorService;
-        public AdvisorsController(AdvisorService advisorService)
+        private readonly IAdvisorService _advisorService;
+        public AdvisorsController(IAdvisorService advisorService)
         {
             _advisorService = advisorService;
         }
