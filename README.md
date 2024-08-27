@@ -116,8 +116,24 @@ Las pruebas se desarrollarán utilizando xUnit, cubriendo los siguientes aspecto
 ### 1. Clonar el Repositorio
 
 ```bash
-git clone https://github.com/usuario/advisor-management-api.git
-cd advisor-management-api
+git clone https://github.com/ronnymarca81/ApexaTechnicalSolution.git
+cd ApexaTechnicalSolution
+
+### 2. Restaurar Paquetes NuGet
+bash
+dotnet restore
+
+### 3. Ejecutar la Aplicación
+bash
+Regresar a la carpeta ApexaTechnicalSolution con cd..
+dotnet run --project ApexaTechnicalApi/ApexaTechnicalApi.csproj
+El proyecto del API y las pruebas comparten la solucion por tal razon debe indicar el proyecto a ejecutar.
+
+La API estará disponible en https://localhost:5225 y la documentación de Swagger en https://localhost:5225/swagger.
+
+![image](https://github.com/user-attachments/assets/a1b723f6-2e47-456a-be7c-19f43e054192)
+
+
 == Milestones
 
 1. Configuración inicial y estructura del proyecto.
