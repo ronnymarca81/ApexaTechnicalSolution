@@ -115,7 +115,7 @@ Las pruebas se desarrollarán utilizando xUnit, cubriendo los siguientes aspecto
 
 ### 1. Clonar el Repositorio
 
-```bash
+bash
 git clone https://github.com/ronnymarca81/ApexaTechnicalSolution.git
 cd ApexaTechnicalSolution
 
